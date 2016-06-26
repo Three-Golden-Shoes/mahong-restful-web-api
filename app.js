@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-fs.stat("items.json", function (err, stat, next) {
+fileName="items.json";
+
+fs.stat(fileName, function (err, stat, next) {
     if ((stat && stat.isFile())) {
         console.log("文件存在");
     } else {

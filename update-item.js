@@ -10,7 +10,7 @@ router.put('/products/:id', function (req, res, next) {
         "unit": req.body.unit,
         "price": req.body.price
     };
-    fs.readFile("items.json", 'utf8', function (err, data) {
+    fs.readFile(fileName, 'utf8', function (err, data) {
         if (err) {
             return next(err);
         }
@@ -29,7 +29,7 @@ function updataItem(data, item, req, res, next) {
         for (var i = 0; i < itemsData.items.length; i++) {
             if (itemsData.items[i].id === parseInt(req.params.id)) {
                 itemsData.items[i] = item;
-                fs.writeFile('items.json', JSON.stringify(itemsData), function (err) {
+                fs.writeFile(fileName, JSON.stringify(itemsData), function (err) {
                     if (err) {
                         return next(err);
                     }
