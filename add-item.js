@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs");
 
-router.post('/products', function (req, res,next) {
+router.post('/products', function (req, res, next) {
     fs.readFile("items.json", 'utf8', function (err, data) {
         if (err) {
-            return  next(err);
+            return next(err);
         }
         if (data === '') {
             data = {};
@@ -13,13 +13,13 @@ router.post('/products', function (req, res,next) {
             data.items = [];
         }
         else {
-             data = JSON.parse(data);
+            data = JSON.parse(data);
         }
-        addItem(data,req,res,next);
+        addItem(data, req, res, next);
     });
 });
 
-function addItem(itemsData,req,res,next) {
+function addItem(itemsData, req, res, next) {
     var item = {
         "id": itemsData.indexNum,
         "barcode": req.body.barcode,
@@ -30,7 +30,7 @@ function addItem(itemsData,req,res,next) {
     if ((typeof item.barcode) === 'string' && (typeof item.name) === "string" && (typeof item.unit) === "string" && (typeof item.price) === "number") {
         itemsData.items.push(item);
         itemsData.indexNum++;
-        fs.writeFile('items.json',JSON.stringify(itemsData),function (err) {
+        fs.writeFile('items.json', JSON.stringify(itemsData), function (err) {
             if (err) {
                 return next(err);
             }

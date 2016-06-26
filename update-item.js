@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require("fs");
 
-router.put('/products/:id', function (req,res,next) {
+router.put('/products/:id', function (req, res, next) {
     var item = {
         "id": parseInt(req.params.id),
         "barcode": req.body.barcode,
@@ -14,16 +14,16 @@ router.put('/products/:id', function (req,res,next) {
         if (err) {
             return next(err);
         }
-        if (data=== '') {
+        if (data === '') {
             res.sendStatus(404);
         }
         else {
-            updataItem(data,item,req,res,next);
+            updataItem(data, item, req, res, next);
         }
     });
 });
 
-function updataItem(data,item,req,res,next) {
+function updataItem(data, item, req, res, next) {
     var itemsData = JSON.parse(data);
     if ((typeof item.barcode) === 'string' && (typeof item.name) === "string" && (typeof item.unit) === "string" && (typeof item.price) === "number") {
         for (var i = 0; i < itemsData.items.length; i++) {
