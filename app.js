@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-fileName="items.json";
+fileName = "items.json";
 
 fs.stat(fileName, function (err, stat, next) {
     if ((stat && stat.isFile())) {

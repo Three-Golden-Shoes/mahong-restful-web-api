@@ -30,7 +30,7 @@ function addItem(itemsData, req, res, next) {
     if ((typeof item.barcode) === 'string' && (typeof item.name) === "string" && (typeof item.unit) === "string" && (typeof item.price) === "number") {
         itemsData.items.push(item);
         itemsData.indexNum++;
-        fs.writeFile('items.json', JSON.stringify(itemsData), function (err) {
+        fs.writeFile(fileName, JSON.stringify(itemsData), function (err) {
             if (err) {
                 return next(err);
             }
