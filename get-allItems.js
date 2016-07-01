@@ -1,9 +1,9 @@
 var express = require('express');
-var router = express.Router();
 var fs = require("fs");
+var router = express.Router();
 
 router.get('/products', function (req, res, next) {
-    fs.readFile(fileName, 'utf8', function (err, data) {
+    fs.readFile('items.json', 'utf8', function (err, data) {
         if (err) {
             return next(err);
         }

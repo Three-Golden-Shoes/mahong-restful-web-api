@@ -1,9 +1,9 @@
 var express = require('express');
-var router = express.Router();
 var fs = require("fs");
+var router = express.Router();
 
 router.delete('/products/:id', function (req, res, next) {
-    fs.readFile(fileName, 'utf8', function (err, data) {
+    fs.readFile('items.json', 'utf8', function (err, data) {
         if (err) {
             return next(err);
         }
@@ -21,7 +21,7 @@ function deleteItem(data, req, res, next) {
     for (var i = 0; i < itemsData.items.length; i++) {
         if (itemsData.items[i].id === parseInt(req.params.id)) {
             itemsData.items.splice(i, 1);
-            fs.writeFile(fileName, JSON.stringify(itemsData), function (err) {
+            fs.writeFile('items.json', JSON.stringify(itemsData), function (err) {
                 if (err) {
                     return next(err);
                 }

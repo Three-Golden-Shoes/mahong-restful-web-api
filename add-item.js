@@ -1,9 +1,9 @@
 var express = require('express');
-var router = express.Router();
 var fs = require("fs");
+var router = express.Router();
 
 router.post('/products', function (req, res, next) {
-    fs.readFile(fileName, 'utf8', function (err, data) {
+    fs.readFile('items.json', 'utf8', function (err, data) {
         if (err) {
             return next(err);
         }
@@ -30,7 +30,7 @@ function addItem(itemsData, req, res, next) {
     if ((typeof item.barcode) === 'string' && (typeof item.name) === "string" && (typeof item.unit) === "string" && (typeof item.price) === "number") {
         itemsData.items.push(item);
         itemsData.indexNum++;
-        fs.writeFile(fileName, JSON.stringify(itemsData), function (err) {
+        fs.writeFile('items.json', JSON.stringify(itemsData), function (err) {
             if (err) {
                 return next(err);
             }

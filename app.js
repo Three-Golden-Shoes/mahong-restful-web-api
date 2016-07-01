@@ -1,13 +1,10 @@
 var express = require('express');
-var app = express();
 var fs = require("fs");
 var bodyParser = require('body-parser');
-
+var app = express();
 app.use(bodyParser.json());
 
-fileName = "items.json";
-
-fs.stat(fileName, function (err, stat, next) {
+fs.stat('items.json', function (err, stat, next) {
     if ((stat && stat.isFile())) {
         console.log("文件存在");
     } else {
